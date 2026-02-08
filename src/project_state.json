@@ -1,0 +1,261 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 15,
+  "summary": "Build a mobile-first, fully responsive one-page e-commerce website for the brand “minoQ” using only HTML, CSS, and vanilla JavaScript, featuring a neon green on black cyber/premium design, product listings with WhatsApp Buy Now links, a hamburger menu with Help/Feedback WhatsApp redirect, and a hidden access-code-gated frontend-only Admin Mode to live-edit product data stored in a JS array.",
+  "architectural_notes": [
+    "Frontend-only single-page site using HTML, CSS, and vanilla JS; no backend.",
+    "No cart/checkout/online payments; ordering via WhatsApp deep links.",
+    "Product data stored in a JavaScript array; UI renders from this array and updates live when edited.",
+    "Admin Mode is gated by an in-page modal with password input; correct access code enables editing UI.",
+    "Admin Mode should support adding new products by updating the in-memory products array and re-rendering the products grid (including WhatsApp link generation).",
+    "If price input allows alphanumeric characters, WhatsApp Buy Now message should still use a normal numeric price value (sanitize/strip non-numeric characters for the outgoing message).",
+    "Buy Now button should play a short UI animation on tap/click prior to navigation to the WhatsApp deep link.",
+    "Price may be stored/displayed as an alphanumeric string in the UI (letters + numbers), rather than being forced to numeric-only for display."
+  ],
+  "known_issues": [
+    "Admin Panel price input currently does not allow alphabetic characters (user wants alphanumeric input in the price box)."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-single-page-mobile-first-responsive-storefront-ui-for-the-brand-minoq-with-the-following-sections-in-order-1-header-containing-neon-green-minoq-logo-text-and-a-hamburger-menu-button-fixed-at-the-top-right-2-hero-section-with-the-exact-text-premium-products-simple-ordering-3-products-grid-listing-products-4-trust-section-showing-fast-delivery-cash-on-delivery-and-order-via-whatsapp-and-5-footer-with-the-brand-name-and-whatsapp-contact-number",
+      "title": "Create a single-page, mobile-first responsive storefront UI for the brand “minoQ” with the following sections in order: (1) Header containing neon-green “minoQ” logo text and a hamburger menu button (☰) fixed at the top-right, (2) Hero section with the exact text “Premium Products. Simple Ordering.”, (3) Products grid listing products, (4) Trust section showing “Fast delivery”, “Cash on Delivery”, and “Order via WhatsApp”, and (5) Footer with the brand name and WhatsApp contact number.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-consistent-visual-design-matching-black-background-neon-green-accents-futuristic-cyber-premium-styling-and-visible-neon-glow-effects-on-buttons-borders-and-hover-focus-states",
+      "title": "Apply a consistent visual design matching: black background, neon green accents, futuristic/cyber/premium styling, and visible neon glow effects on buttons, borders, and hover/focus states.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-product-listing-rendering-from-an-in-memory-javascript-typescript-array-of-products-each-having-name-price-and-image-url-and-display-each-product-in-the-grid-with-image-name-price-and-a-buy-now-button",
+      "title": "Implement product listing rendering from an in-memory JavaScript/TypeScript array of products (each having name, price, and image URL) and display each product in the grid with: image, name, price (₹), and a “Buy Now” button.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-each-product-s-buy-now-button-open-whatsapp-using-the-exact-wa-me-template-with-the-configured-number-and-message-substituting-product-name-and-price-https-wa-me-918240316884-text-i-20want-20to-20buy-20-product-name-20for-20-price-20from-20minoq-ensure-the-final-link-is-correctly-url-encoded-for-product-names-containing-spaces-special-characters",
+      "title": "Make each product’s “Buy Now” button open WhatsApp using the exact wa.me template with the configured number and message, substituting [PRODUCT_NAME] and [PRICE]: https://wa.me/918240316884?text=I%20want%20to%20buy%20[PRODUCT_NAME]%20for%20₹[PRICE]%20from%20minoQ. Ensure the final link is correctly URL-encoded for product names containing spaces/special characters.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-hamburger-menu-opened-by-the-button-that-contains-exactly-two-items-1-help-feedback-which-redirects-to-https-wa-me-918240316884-text-hi-20i-20need-20help-20from-20minoq-and-2-admin-panel-which-triggers-the-access-code-modal-described-in-req-6",
+      "title": "Implement a hamburger menu opened by the (☰) button that contains exactly two items: (1) “Help / Feedback” which redirects to https://wa.me/918240316884?text=Hi%20I%20need%20help%20from%20minoQ, and (2) “Admin Panel” which triggers the access-code modal described in REQ-6.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-admin-panel-access-flow-that-is-hidden-by-default-and-only-enables-admin-mode-after-entering-the-correct-access-code-behavior-when-admin-panel-is-clicked-show-a-modal-asking-for-an-access-code-with-an-input-of-type-password-if-the-code-is-wrong-show-access-denied-if-correct-9432144881-enable-admin-mode-for-the-current-session",
+      "title": "Create an Admin Panel access flow that is hidden by default and only enables Admin Mode after entering the correct access code. Behavior: when “Admin Panel” is clicked, show a modal asking for an access code with an input of type password; if the code is wrong show “Access Denied”; if correct (9432144881), enable Admin Mode for the current session.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-when-admin-mode-is-enabled-provide-ui-controls-to-edit-product-name-product-price-and-product-image-url-for-each-product-and-ensure-edits-update-the-displayed-product-cards-live-and-affect-subsequent-buy-now-whatsapp-link-generation",
+      "title": "When Admin Mode is enabled, provide UI controls to edit product name, product price, and product image URL for each product, and ensure edits update the displayed product cards live and affect subsequent “Buy Now” WhatsApp link generation.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-codebase-is-clean-readable-and-beginner-friendly-include-clear-comments-straightforward-component-structure-and-avoid-unnecessary-complexity-deliver-a-complete-working-frontend-that-runs-as-is-in-the-provided-template-environment-without-requiring-any-backend-canister-logic",
+      "title": "Ensure the codebase is clean, readable, and beginner-friendly: include clear comments, straightforward component structure, and avoid unnecessary complexity; deliver a complete working frontend that runs as-is in the provided template environment without requiring any backend canister logic.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-when-admin-mode-is-active-add-an-add-product-ui-that-lets-the-admin-create-and-append-a-new-product-to-the-in-memory-products-state-name-price-in-image-url-and-immediately-render-the-new-product-in-the-products-grid",
+      "title": "When Admin Mode is active, add an \"Add Product\" UI that lets the admin create and append a new product to the in-memory products state (name, price in ₹, image URL), and immediately render the new product in the products grid.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-validate-add-product-form-inputs-and-show-user-friendly-english-error-messages-for-invalid-submissions-e-g-empty-name-missing-image-url-non-positive-or-non-numeric-price-and-prevent-adding-the-product-until-the-inputs-are-valid",
+      "title": "Validate Add Product form inputs and show user-friendly English error messages for invalid submissions (e.g., empty name, missing image URL, non-positive or non-numeric price), and prevent adding the product until the inputs are valid.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-newly-added-products-work-with-existing-admin-mode-editing-controls-and-display-behavior-edit-name-price-image-url-live-exactly-like-the-initial-products",
+      "title": "Ensure newly added products work with existing Admin Mode editing controls and display behavior (edit name/price/image URL live) exactly like the initial products.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-admin-mode-indicator-text-with-english-only-text-no-emoji-while-preserving-its-meaning-and-visibility-in-the-ui",
+      "title": "Replace the Admin Mode indicator text with English-only text (no emoji) while preserving its meaning and visibility in the UI.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-only-change-notes-panel-that-lets-an-admin-record-free-form-notes-about-desired-changes-persists-the-notes-in-browser-localstorage-and-provides-a-one-click-copy-action-to-copy-the-notes-to-the-clipboard",
+      "title": "Add an Admin-only \"Change Notes\" panel that lets an admin record free-form notes about desired changes, persists the notes in browser localStorage, and provides a one-click \"Copy\" action to copy the notes to the clipboard.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-short-admin-only-prompt-near-the-change-notes-panel-that-asks-the-admin-to-capture-specific-details-for-upcoming-changes-e-g-what-to-change-where-and-expected-outcome-using-english-only-text",
+      "title": "Add a short, Admin-only prompt near the Change Notes panel that asks the admin to capture specific details for upcoming changes (e.g., what to change, where, and expected outcome) using English-only text.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-admin-facing-price-input-fields-to-allow-typing-both-letters-and-numbers-alphanumeric-while-still-storing-and-displaying-the-product-price-as-a-numeric-value-and-keep-the-whatsapp-buy-now-message-price-numeric-only-scope-includes-add-product-form-price-input-product-inline-edit-price-input-behavior-the-price-input-field-must-accept-free-form-text-letters-numbers-on-save-submit-extract-the-numeric-price-from-the-typed-value-ignore-any-letters-and-store-it-as-the-product-s-numeric-price-validation-must-still-require-a-valid-numeric-price-greater-than-0-after-extraction-otherwise-show-the-existing-english-validation-error-the-whatsapp-buy-now-message-must-remain-in-the-existing-numeric-format-i-want-to-buy-product-name-for-numeric-price-from-minoq-no-letters-included-in-the-price-portion",
+      "title": "Update all admin-facing price input fields to allow typing both letters and numbers (alphanumeric) while still storing and displaying the product price as a numeric value, and keep the WhatsApp Buy Now message price numeric-only.\n\nScope includes:\n- Add Product form price input\n- Product inline edit price input\n\nBehavior:\n- The price input field must accept free-form text (letters + numbers).\n- On save/submit, extract the numeric price from the typed value (ignore any letters) and store it as the product’s numeric price.\n- Validation must still require a valid numeric price greater than 0 after extraction; otherwise show the existing English validation error.\n- The WhatsApp Buy Now message must remain in the existing numeric format: \"I want to buy [PRODUCT_NAME] for ₹[NUMERIC_PRICE] from minoQ\" (no letters included in the price portion).",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-tap-click-animation-on-every-product-s-buy-now-button-so-that-when-the-button-is-pressed-it-performs-a-quick-pulse-animation-before-opening-the-whatsapp-link-in-a-new-tab",
+      "title": "Add a tap/click animation on every product’s “Buy Now” button so that when the button is pressed it performs a quick pulse animation before opening the WhatsApp link in a new tab.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-product-data-model-and-ui-so-that-any-alphabetic-characters-typed-into-the-admin-price-field-are-preserved-and-shown-in-the-product-price-display-alphanumeric-price-visible-in-the-ui-while-still-extracting-and-storing-a-numeric-only-price-value-for-whatsapp-buy-now-link-generation",
+      "title": "Update the product data model and UI so that any alphabetic characters typed into the admin price field are preserved and shown in the product price display (alphanumeric price visible in the UI), while still extracting and storing a numeric-only price value for WhatsApp “Buy Now” link generation.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-vfx-style-animated-background-layer-cyber-neon-behind-the-entire-minoq-storefront-while-preserving-readability-of-all-existing-sections-header-hero-products-grid-trust-section-footer-the-effect-must-match-the-existing-neon-green-on-black-theme",
+      "title": "Add a VFX-style animated background layer (cyber/neon) behind the entire minoQ storefront while preserving readability of all existing sections (header, hero, products grid, trust section, footer). The effect must match the existing neon-green-on-black theme.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-background-as-a-fixed-full-viewport-layer-that-does-not-interfere-with-interactions-no-pointer-capture-and-does-not-break-existing-layout-sticky-header-behavior",
+      "title": "Implement the background as a fixed, full-viewport layer that does not interfere with interactions (no pointer capture) and does not break existing layout/sticky header behavior.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-vfx-background-is-performance-conscious-and-accessible-respect-reduced-motion-preferences-and-avoid-heavy-gpu-cpu-usage-on-mobile",
+      "title": "Ensure the VFX background is performance-conscious and accessible: respect reduced-motion preferences and avoid heavy GPU/CPU usage on mobile.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create single-page responsive minoQ storefront layout (header with logo + fixed hamburger, hero text, products grid, trust section, footer) with black background and neon green futuristic styling/glow effects",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement products grid rendering from a JavaScript array (image, name, price) with live updates reflected in the UI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add Buy Now buttons that open WhatsApp using the specified wa.me link template populated with product name and price (no cart/checkout/payments)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement hamburger menu with Help/Feedback item linking to the specified WhatsApp help URL and an Admin Panel entry",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Build hidden Admin Panel with password-type access-code modal; deny on wrong code; enable Admin Mode on correct code (9432144881) to edit product name/price/image URL with live updates",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Provide clean, readable, commented, beginner-friendly HTML/CSS/JS code ready to run as-is on Replit (frontend-only, no backend)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "In Admin Mode, add UI to create/add new products (name, price, image URL) to the products array and immediately render them in the products grid with correct Buy Now WhatsApp links",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Allow price input to accept both letters and numbers, but keep the WhatsApp Buy Now message price formatted normally (numeric-only)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add a tap/click animation on the Buy Now button (e.g., quick pulse) before opening the WhatsApp link",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Update product price display to allow showing alphabetic characters alongside the price (alphanumeric price visible in UI, not numeric-only)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Add a VFX-style animated background effect (cyber/neon) to the minoQ one-page storefront while preserving readability and performance",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Fix the Admin Mode product price inputs so admins can type alphabetic characters (alphanumeric) in the price box without the UI preventing keystrokes, while preserving existing behavior: (1) store/show the typed alphanumeric text as the product’s display price, and (2) continue extracting and using a numeric-only price value for the WhatsApp “Buy Now” message/link generation.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "minoQ",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

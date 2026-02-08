@@ -1,0 +1,19 @@
+{
+  "frontend/src/App.tsx": "Main app component with cyber VFX background layer, product state management, admin mode, hamburger menu, and all page sections wrapped in relative z-index container for proper stacking.",
+  "frontend/src/data/products.ts": "Product data model with optional priceDisplay field for alphanumeric text and initial products array with 6 sample products.",
+  "frontend/src/lib/whatsapp.ts": "Utility functions to build properly URL-encoded WhatsApp wa.me links for Buy Now (with product name and price) and Help/Feedback actions.",
+  "frontend/src/components/HamburgerMenu.tsx": "Slide-in menu component from the right with Help/Feedback (WhatsApp link) and Admin Panel (opens access modal) menu items.",
+  "frontend/src/components/AdminAccessModal.tsx": "Modal dialog with password input for admin access; validates code (9432144881) and shows \"Access Denied\" on wrong entry.",
+  "frontend/src/components/ProductCard.tsx": "Product card displaying image, name, alphanumeric price display, and Buy Now button; in admin mode shows inline editing that preserves alphanumeric price text while using numeric price for WhatsApp.",
+  "frontend/src/components/TrustSection.tsx": "Trust/features section displaying three key benefits (Fast delivery, Cash on Delivery, Order via WhatsApp) in a responsive grid.",
+  "frontend/src/components/Footer.tsx": "Footer component with minoQ branding, WhatsApp contact number, and caffeine.ai attribution.",
+  "frontend/src/index.css": "Global styles with neon green OKLCH tokens, cyber effects, Buy Now pulse animation, and complete cyber VFX background styles including grid, scanlines, particles, glow animations, reduced-motion support, and mobile optimizations.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with neon-green color palette, custom shadows (neon-sm/md/lg), pulse-glow animation, and cyber-themed design tokens.",
+  "frontend/src/main.tsx": "Application entry point rendering App component wrapped in QueryClientProvider (no authentication provider needed for this frontend-only storefront).",
+  "frontend/src/lib/id.ts": "Utility function to generate unique IDs for new products using crypto.randomUUID() with a timestamp-based fallback for older browsers.",
+  "frontend/src/components/AddProductForm.tsx": "Admin-only form for adding new products with validation that accepts alphanumeric price input, extracts numeric value, and stores both for display and WhatsApp messaging.",
+  "frontend/src/hooks/useLocalStorageState.ts": "Custom React hook for persisting string state to browser localStorage with safe initialization, updates, and error handling.",
+  "frontend/src/components/ChangeNotesPanel.tsx": "Admin-only Change Notes panel component with multiline textarea, localStorage persistence, and clipboard copy functionality with English confirmation message, styled to match the neon/cyber theme.",
+  "frontend/src/lib/price.ts": "Utility functions to extract numeric price from alphanumeric input and format display prices using priceDisplay when available or falling back to numeric formatting.",
+  "frontend/src/components/CyberVfxBackground.tsx": "Fixed full-viewport cyber VFX background component with animated grid, scanlines, particles, and radial glow effects; non-interactive layer that sits behind all content."
+}

@@ -1,0 +1,41 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Admin price inputs accept alphanumeric while preserving numeric WhatsApp price",
+  "requirements": [
+    {
+      "id": "REQ-21",
+      "summary": "Update Admin Mode price inputs to accept alphanumeric typing, store/display full text as the product display price, and keep WhatsApp Buy Now price numeric-only with existing validation/errors.",
+      "acceptanceCriteria": [
+        "In Admin Mode, the inline product price edit input accepts letters as you type (e.g., typing \"A50\" or \"MRP 299\" is not blocked).",
+        "In Admin Mode, the Add Product form price input accepts letters as you type (e.g., \"A50\" is not blocked).",
+        "After saving an edited product price containing letters, the product card displays the full alphanumeric price text in the UI (including the letters).",
+        "For any alphanumeric price input, the WhatsApp “Buy Now” link continues to use a numeric-only price value (letters are excluded from the WhatsApp message price portion).",
+        "If the admin enters a price that contains no valid numeric value > 0 after extraction, show the existing English validation error message (do not allow save/add).",
+        "Do not introduce any new non-English user-facing text."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ProductCard.tsx",
+          "operation": "modify",
+          "description": "Ensure the Admin inline price edit control is a text input (not numeric-restricted) so letters are not blocked, while continuing to (a) persist the typed string as priceDisplay and (b) validate/save a numeric-only extracted price for WhatsApp link generation; keep the existing English validation error message unchanged."
+        },
+        {
+          "path": "frontend/src/components/AddProductForm.tsx",
+          "operation": "modify",
+          "description": "Ensure the Admin Add Product form price input is a text input (not numeric-restricted) so letters are not blocked, while continuing to (a) store the typed string as priceDisplay and (b) validate/add using a numeric-only extracted price; keep the existing English validation error message unchanged."
+        },
+        {
+          "path": "frontend/src/lib/price.ts",
+          "operation": "modify",
+          "description": "Harden numeric extraction from mixed alphanumeric price strings (e.g., ignore letters/symbols and return null for no valid number > 0) without changing user-facing copy, so Admin validation and WhatsApp numeric price remain correct for inputs like \"MRP 299\" and \"A50\"."
+        },
+        {
+          "path": "frontend/src/lib/whatsapp.ts",
+          "operation": "modify",
+          "description": "Confirm Buy Now link generation continues to receive and use only the numeric price value (not priceDisplay) for message composition; adjust types/usage only if needed to prevent accidental inclusion of alphanumeric display text."
+        }
+      ]
+    }
+  ]
+}

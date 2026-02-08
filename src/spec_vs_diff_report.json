@@ -1,0 +1,21 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-08T21:17:52.223Z",
+  "summary": "The diff only modifies `project_state.json` and shows no evidence of any frontend code changes to Admin price inputs or WhatsApp price extraction logic. Therefore REQ-21 is not implemented in the provided diff.",
+  "missing_requirements": [
+    {
+      "id": "REQ-21",
+      "requirement": "Fix the Admin Mode product price inputs so admins can type alphabetic characters (alphanumeric) in the price box without the UI preventing keystrokes, while preserving existing behavior: (1) store/show the typed alphanumeric text as the product’s display price, and (2) continue extracting and using a numeric-only price value for the WhatsApp “Buy Now” message/link generation; also validate that extracted numeric value > 0 and show existing English error if not.",
+      "reason": "No relevant frontend implementation changes are shown; only `project_state.json` was modified, which does not demonstrate updates to input handling, display storage, WhatsApp link generation, or validation behavior.",
+      "evidence": [
+        "project_state.json"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.74,
+  "changed_files": [
+    "project_state.json"
+  ]
+}
